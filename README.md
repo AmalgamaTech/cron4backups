@@ -1,43 +1,26 @@
 # cron4backups
 [![N|Solid](http://core0.staticworld.net/images/article/2015/07/docker-logo-copy-100594460-small.idge.png)](https://hub.docker.com/)
-## Actual version: 0.1
-### 0.1 [20170424]
-> -Crea backup automáticos para db mysql
+## Current version: 1.0
+### 1.0 [20181002]
+> -Change directories name
 
+> -Add all manual actions to Dockerfile
+
+> -Change instructions
+
+### 0.1 [20170424]
 > -Create automatic backups for mysql databases
 
 ### install
 
-> -Pull image
+docker run -d -it --name [INSTANCE NAME] 
+-v /[YOUR ROUTE]/cron:/resources/cron 
+-v /[YOUR ROUTE]/backuplog:/var/log/cronlog 
+-v /[YOUR ROUTE]/scripts:/resources/scripts 
+-v /[YOUR ROUTE]/backups:/resources/backups 
+-e MYSQL_ROOT_PASSWORD="THEPASS" javierpozuelo/cron4backups
 
-> -docker build -t mycronjob .
-
-> - OR
-
-> -docker pull javierpozuelo/cron4backups
-
-> -
-docker run -d -it --name cronjob \
--v /[YOUR ROUTE]/cron:/cronresources/crontemp \
--v /[YOUR ROUTE]/backuplog:/var/log/cronlog \
--v /[YOUR ROUTE]/scripts:/cronresources/scripts \
--v /[YOUR ROUTE]/backups:/cronresources/backups \
--e MYSQL_ROOT_PASSWORD="THEPASS" [YOUR IMAGE NAME]
-
-> after docker run exec:
-
-> -docker exec -it [YOUR IMAGE NAME] /bin/bash
-
-> we are into the docker...
-
-> -mv /etc/crontab /cronresources/crontemp
-
-> this is to have the crontab's file control from with in the principal filesystem 
-
-> -cd /etc
-
-> -ln -s /cronresources/crontemp/crontab
-
-> for cron run, exec:
-
-> -cron
+> -/cron: crontab file
+> -/backuplog: directory for self log
+> -/scripts: script files
+> -/backups: directory to save backup

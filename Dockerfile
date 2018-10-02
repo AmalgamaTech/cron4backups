@@ -1,20 +1,18 @@
-# Instructions
-# after docker run exec:
-# docker exec -it [YOUR IMAGE NAME] /bin/bash
-# mv /etc/crontab /cronresources/crontemp
-# cd /etc
-# ln -s /cronresources/crontemp/crontab
-# for cron run:
-# cron
-
 FROM ubuntu:latest
 FROM mysql:5
 MAINTAINER javi@amalgamatech.com
 
-# install cron and vim
+# install cron, vim and curl
 RUN apt-get update && apt-get install -y \
-  cron vim
+  cron vim curl
 
-RUN mkdir -p /cronresources/crontemp
-RUN mkdir -p /cronresources/scripts
-RUN mkdir -p /cronresources/backups
+# create all dirs
+RUN mkdir -p /resources/cron
+RUN mkdir -p /resources/scripts
+RUN mkdir -p /resources/backups
+# mv original crontab file to persistant disk
+RUN mv /etc/crontab /resources/cron
+# create symbolic link from /etc to persistant file
+RUN ln -s /resources/cron/crontab /etc/crontab
+# run cron
+CMD /usr/sbin/cron -f
