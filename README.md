@@ -13,11 +13,11 @@
 
 ### install
 
-docker run -d -it --name [INSTANCE NAME] \
--v /[YOUR ROUTE]/cron:/resources/cron \
--v /[YOUR ROUTE]/backuplog:/var/log/cronlog \
--v /[YOUR ROUTE]/scripts:/resources/scripts \
--v /[YOUR ROUTE]/backups:/resources/backups \
+docker run -d -it --name [INSTANCE NAME] \\\
+-v /[YOUR ROUTE]/cron:/resources/cron \\\
+-v /[YOUR ROUTE]/backuplog:/var/log/cronlog \\\
+-v /[YOUR ROUTE]/scripts:/resources/scripts \\\
+-v /[YOUR ROUTE]/backups:/resources/backups \\\
 -e MYSQL_ROOT_PASSWORD="THEPASS" javierpozuelo/cron4backups
 
 > -/cron: crontab file
