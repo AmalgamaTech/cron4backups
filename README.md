@@ -1,7 +1,7 @@
 # cron4backups
 [![N|Solid](http://core0.staticworld.net/images/article/2015/07/docker-logo-copy-100594460-small.idge.png)](https://hub.docker.com/)
 ## Current version: 2.0
-### 1.0 [20181003]
+### 2.0 [20181003]
 > -Remove crontemp directory
 
 > -Link cron filesystem directory to /etc/cron.d docker directory in RUN command
